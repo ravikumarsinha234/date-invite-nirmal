@@ -1,0 +1,260 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, #ff9a9e, #fecfef);
+    color: #333;
+}
+
+.container {
+    text-align: center;
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+h1 { font-size: 2em; margin-bottom: 30px; color: #e91e63; }
+
+.buttons { display: flex; gap: 20px; justify-content: center; }
+
+.btn {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.yes { background: #4caf50; color: white; }
+
+.no { background: #f44336; color: white; }
+
+.yes:hover { transform: scale(1.1); }
+
+#thankyou {
+    animation: fadeIn 0.5s;
+}
+
+#thankyou.hidden { display: none; }
+
+#gif { max-width: 300px; margin-top: 20px; }
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+        margin: 20px;
+        max-width: 90vw;
+    }
+    
+    h1 { 
+        font-size: 1.5em; 
+        line-height: 1.3;
+    }
+    
+    .buttons { 
+        flex-direction: column; 
+        gap: 15px;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+    
+    .btn {
+        padding: 20px 40px;
+        font-size: 1.3em;
+        min-height: 60px; /* Bigger touch target */
+    }
+    
+    #gif { max-width: 250px; }
+}
+
+@media (max-width: 480px) {
+    h1 { font-size: 1.3em; }
+    .btn { font-size: 1.1em; padding: 18px 30px; }
+}
+
+/* Add to your existing CSS */
+
+.hidden { display: none !important; }
+
+.question-section, .form-section, .celebration-section {
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.date-input {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1em;
+    border: 2px solid #ffebee;
+    border-radius: 12px;
+    margin: 20px 0;
+    background: #fdf2f8;
+    font-family: inherit;
+}
+
+.date-input:focus {
+    outline: none;
+    border-color: #e91e63;
+    box-shadow: 0 0 0 3px rgba(233, 30, 99, 0.1);
+}
+
+.location-options {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 15px;
+    margin: 20px 0;
+    text-align: left;
+}
+
+.location-options h3 {
+    margin: 0 0 15px 0;
+    color: #e91e63;
+}
+
+.location-options label {
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+    background: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 2px solid transparent;
+}
+
+.location-options label:hover {
+    background: #fff3e0;
+    transform: translateX(5px);
+}
+
+.location-options input[type="checkbox"]:checked + span,
+.location-options label:has(input[type="checkbox"]:checked) {
+    background: #e8f5e8;
+    border-color: #4caf50;
+}
+
+textarea#customMsg {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #ffebee;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 1.1em;
+    background: #fdf2f8;
+    resize: vertical;
+    margin: 20px 0;
+}
+
+textarea#customMsg:focus {
+    outline: none;
+    border-color: #4caf50;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.date-details {
+    background: linear-gradient(135deg, #fff3e0, #fce4ec);
+    padding: 25px;
+    border-radius: 20px;
+    margin: 25px 0;
+    border: 3px dashed #ff9800;
+}
+
+.date-details p {
+    margin: 10px 0;
+    font-size: 1.2em;
+}
+
+.share-btn {
+    margin-top: 25px;
+    padding: 18px 40px;
+    font-size: 1.3em;
+}
+
+.btn.secondary {
+    background: #757575;
+}
+
+.btn.secondary:hover {
+    background: #616161;
+    transform: scale(1.05);
+}
+
+/* Confetti canvas */
+#confettiCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 999;
+}
+
+/* Enhanced mobile styles */
+@media (max-width: 768px) {
+    .form-buttons, .buttons {
+        flex-direction: column;
+    }
+    
+    .location-options {
+        padding: 15px;
+    }
+    
+    .location-options label {
+        font-size: 1.1em;
+        padding: 12px;
+    }
+}
+
+/* Personalized name styling */
+#pickerName, #celebrateName {
+    color: #e91e63;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+#dateHeader, #celebrateHeader {
+    background: linear-gradient(135deg, #ff9a9e, #fecfef);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Toast notifications */
+.toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 20px 25px;
+    border-radius: 12px;
+    color: white;
+    font-weight: 500;
+    max-width: 350px;
+    z-index: 10001;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    transform: translateX(400px);
+    animation: slideInRight 0.4s ease-out forwards;
+}
+
+.toast-success { background: linear-gradient(135deg, #4caf50, #45a049); }
+.toast-error { background: linear-gradient(135deg, #f44336, #d32f2f); }
+
+@keyframes slideInRight {
+    to { transform: translateX(0); }
+}
