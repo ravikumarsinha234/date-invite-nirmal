@@ -8,16 +8,59 @@
 </head>
 <body>
     <div class="container">
-        <h1>Would you like to go on a date with me, Nirmal?</h1>
-        <div class="buttons">
-            <button id="yesBtn" class="btn yes">Yes 😍</button>
-            <button id="noBtn" class="btn no">No</button>
+        <!-- Original question -->
+        <div id="question" class="question-section">
+            <h1>Would you like to go on a date with me?</h1>
+            <div class="buttons">
+                <button id="yesBtn" class="btn yes">Yes 😍</button>
+                <button id="noBtn" class="btn no">No</button>
+            </div>
         </div>
-        <div id="thankyou" class="hidden">
-            <h2>Thank you! 💕</h2>
-            <img src="https://media.giphy.com/media/Ju7l5y9osyymQ/giphy.gif" alt="Thank you GIF" id="gif">
+
+        <!-- Date picker section -->
+        <div id="datePicker" class="hidden form-section">
+            <h2 id="dateHeader">Amazing! When are you free, <span id="pickerName">Nirmal</span>? 🌟</h2>
+            <input type="datetime-local" id="dateInput" class="date-input">
+            <div class="location-options">
+                <h3>Where should we go?</h3>
+                <label><input type="checkbox" value="coffee"> ☕ Coffee shop</label>
+                <label><input type="checkbox" value="dinner"> 🍽️ Dinner</label>
+                <label><input type="checkbox" value="walk"> 🚶‍♀️ Park walk</label>
+                <label><input type="checkbox" value="movie"> 🎬 Movie</label>
+            </div>
+            <div class="form-buttons">
+                <button id="confirmBtn" class="btn yes">Confirm Date 🎉</button>
+                <button id="backBtn" class="btn no">Back</button>
+            </div>
+        </div>
+
+        <!-- Custom message section -->
+        <div id="messageSection" class="hidden form-section">
+            <h2>Tell me more about your perfect date! 💕</h2>
+            <textarea id="customMsg" placeholder="What would make this date perfect for you?" rows="3"></textarea>
+            <div class="form-buttons">
+                <button id="shareBtn" class="btn yes">Share My Yes! ✨</button>
+                <button id="confirmNoMsgBtn" class="btn secondary">Skip & Confirm</button>
+            </div>
+        </div>
+
+        <!-- Celebration screen -->
+        <div id="celebration" class="hidden celebration-section">
+            <h2 id="celebrateHeader">It's a DATE with <span id="celebrateName">Nirmal</span>! 💕</h2>
+            <h2 id="thankyou">Thank you! 💕</h2>
+            <div id="confetti"></div>
+            <img src="https://media.giphy.com/media/Ju7l5y9osyymQ/giphy.gif" alt="Celebration GIF">
+            <div id="dateDetails" class="date-details hidden"></div>
+            <button id="shareFinalBtn" class="btn yes share-btn">Share this moment! 📱</button>
         </div>
     </div>
+
+    <!-- Confetti canvas -->
+    <canvas id="confettiCanvas"></canvas>
+
+    <!-- EmailJS + Confetti + Your script -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
