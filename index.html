@@ -7,9 +7,28 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="static/music.mp3" type="audio/mpeg">
+    </audio>
+    <button id="musicToggle" class="music-toggle" aria-label="Toggle music">🎵</button>
+
     <div class="container">
         <!-- Original question -->
         <div id="question" class="question-section">
+            <!-- Photo carousel -->
+            <div class="photo-carousel">
+                <img src="static/IMG-20260212-WA0022.jpg" alt="Photo 1" class="carousel-img active">
+                <img src="static/IMG-20260212-WA0023.jpg" alt="Photo 2" class="carousel-img">
+                <img src="static/IMG-20260212-WA0024.jpg" alt="Photo 3" class="carousel-img">
+                <img src="static/IMG-20260212-WA0025.jpg" alt="Photo 4" class="carousel-img">
+                <div class="carousel-dots">
+                    <span class="dot active" data-index="0"></span>
+                    <span class="dot" data-index="1"></span>
+                    <span class="dot" data-index="2"></span>
+                    <span class="dot" data-index="3"></span>
+                </div>
+            </div>
             <h1>Would you like to go on a date with me?</h1>
             <div class="buttons">
                 <button id="yesBtn" class="btn yes">Yes 😍</button>
@@ -49,6 +68,18 @@
             <h2 id="celebrateHeader">It's a DATE with <span id="celebrateName">Nirmal</span>! 💕</h2>
             <h2 id="thankyou">Thank you! 💕</h2>
             <div id="confetti"></div>
+            <!-- Special photo on celebration -->
+            <div class="celebration-photo">
+                <img src="static/IMG-20260212-WA0022.jpg" alt="Us together" class="celebrate-img">
+            </div>
+            <!-- Video message -->
+            <div class="video-section">
+                <h3>A little something for you 🎬</h3>
+                <video id="celebrationVideo" controls class="celebration-video">
+                    <source src="static/video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
             <img src="https://media.giphy.com/media/Ju7l5y9osyymQ/giphy.gif" alt="Celebration GIF">
             <div id="dateDetails" class="date-details hidden"></div>
             <button id="shareFinalBtn" class="btn yes share-btn">Share this moment! 📱</button>

@@ -107,6 +107,12 @@ function showCelebration() {
     
     thankyou.textContent = 'It\'s a DATE! 💕';
     
+    // Auto-play celebration video
+    const celebrationVideo = document.getElementById('celebrationVideo');
+    if (celebrationVideo) {
+        celebrationVideo.play().catch(() => {});
+    }
+    
     // 🔥 SEND NOTIFICATION TO YOU!
     sendNotification(message);
 }
@@ -197,6 +203,78 @@ function shareMoment() {
             showToast('Copied to clipboard! Share away! 📋✨', 'success');
         });
     }
+}
+
+// --- Photo Carousel ---
+const carouselImages = document.querySelectorAll('.carousel-img');
+const carouselDots = document.querySelectorAll('.dot');
+let currentSlide = 0;
+let carouselInterval;
+
+function showSlide(index) {
+    carouselImages.forEach(img => img.classList.remove('active'));
+    carouselDots.forEach(dot => dot.classList.remove('active'));
+    currentSlide = index % carouselImages.length;
+    carouselImages[currentSlide].classList.add('active');
+    carouselDots[currentSlide].classList.add('active');
+}
+
+function startCarousel() {
+    carouselInterval = setInterval(() => showSlide(currentSlide + 1), 3000);
+}
+
+carouselDots.forEach(dot => {
+    dot.addEventListener('click', () => {
+        clearInterval(carouselInterval);
+        showSlide(parseInt(dot.dataset.index));
+        startCarousel();
+    });
+});
+
+if (carouselImages.length > 0) startCarousel();
+
+// --- Background Music ---
+const bgMusic = document.getElementById('bgMusic');
+const musicToggle = document.getElementById('musicToggle');
+let musicPlaying = false;
+
+function tryPlayMusic() {
+    if (bgMusic && !musicPlaying) {
+        bgMusic.volume = 0.3;
+        bgMusic.play().then(() => {
+            musicPlaying = true;
+            musicToggle.textContent = '🎵';
+            musicToggle.classList.remove('muted');
+        }).catch(() => {
+            // Autoplay blocked, user needs to interact
+            musicToggle.textContent = '🔇';
+            musicToggle.classList.add('muted');
+        });
+    }
+}
+
+// Try playing on first user interaction
+document.addEventListener('click', function startMusic() {
+    tryPlayMusic();
+    document.removeEventListener('click', startMusic);
+}, { once: true });
+
+if (musicToggle) {
+    musicToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (bgMusic.paused) {
+            bgMusic.volume = 0.3;
+            bgMusic.play();
+            musicPlaying = true;
+            musicToggle.textContent = '🎵';
+            musicToggle.classList.remove('muted');
+        } else {
+            bgMusic.pause();
+            musicPlaying = false;
+            musicToggle.textContent = '🔇';
+            musicToggle.classList.add('muted');
+        }
+    });
 }
 
 // Auto-yes after 8 seconds
